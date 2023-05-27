@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+  dash:
+    platform: linux/amd64
+    build: .
+    ports:
+      - "8050:8050"
+    user: root

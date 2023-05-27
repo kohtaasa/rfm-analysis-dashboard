@@ -9,8 +9,9 @@ df = pd.read_csv('data/rfm_output.csv')
 
 # Initialize the app - incorporate a Dash Bootstrap theme
 external_stylesheets = [dbc.themes.MATERIA]
-# external_stylesheets = [dbc.themes.DARKLY]
+
 app = Dash(__name__, external_stylesheets=external_stylesheets)
+server = app.server
 
 card_header_style = {'text-align': 'left', 'margin-left': '20px', 'margin-top': '10px', 'margin-bottom': '0px'}
 card_header_style_2 = {'text-align': 'left', 'margin-left': '20px', 'margin-top': '10px', 'margin-bottom': '10px'}
@@ -205,4 +206,4 @@ def update_graph(selected_segment):
 
 
 if __name__ == '__main__':
-    app.run_server(host='0.0.0.0', port=8050, debug=False)
+    app.run_server(debug=False, host='0.0.0.0', port=8050)

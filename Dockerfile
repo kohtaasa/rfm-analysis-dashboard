@@ -1,6 +1,8 @@
-FROM --platform=linux/amd64 python:3.10-slim
+FROM --platform=linux/amd64 python:3.9-slim
 
-WORKDIR /app
+ENV APP_HOME /app
+ENV PYTHONUNBUFFERED True
+WORKDIR $APP_HOME
 
 COPY . .
 
@@ -14,6 +16,4 @@ RUN poetry install --no-dev
 
 EXPOSE 8050
 
-CMD ["python", "app.py"]
-
-
+CMD exec gunicorn --bind :8050 --log-level info --workers 1 --threads 8 --timeout 0 app:server
